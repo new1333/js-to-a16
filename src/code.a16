@@ -1,3 +1,7 @@
 @sum
-.var2aaa
-.var2b
+.var2 a
+.var2 b
+.var2 result 
+@main
+.var2 x 5
+.var2 y 10
