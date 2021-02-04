@@ -11,8 +11,33 @@ const code = `
 
 const ast = babelParser.parse(code);
 
+let a16Codes = [];
+
+function push(str) {
+  a16Codes.push(str);
+}
+
 babelTraverse(ast, {
   enter(path) {
-    console.log(path);
+    if (path.isFunctionDeclaration()) {
+      const node = path.node;
+      const {
+        params,
+        id: { name: functionName },
+      } = node;
+      push(`@${functionName}`);
+      params.forEach((param) => {
+        push(`.var2 ${param.name}`);
+      });
+    }
+    if (path.isVariableDeclaration()) {
+      const node = path.node;
+      const {
+        params,
+        id: { name: varName },
+      } = node;
+    }
   },
 });
+
+console.log(a16Codes);
